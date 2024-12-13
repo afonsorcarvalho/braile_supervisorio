@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the existing form view -->
+        <record id="view_braile_ciclos_form_inherit" model="ir.ui.view">
+            <field name="name">ciclos.form.inherit</field>
+            <field name="model">steril_supervisorio.ciclos</field>
+            <field name="inherit_id" ref="steril_supervisorio.steril_supervisorio_ciclos_form_view"/>
+            <field name="arch" type="xml">
+           
+               
+                <xpath expr="//group[@string='Dados Incubação Indicador Biológico']" position="replace">
+                   
+                </xpath>
+                <xpath expr="//group[@string='Dados do Ciclo']" position="replace">
+                   
+                </xpath>
+                <xpath expr="//field[@name='fases']" position="replace">
+                   
+                </xpath>
+                <xpath expr="//group[@string='Alarmes']" position="replace">
+                   
+                </xpath>
+                <xpath expr="//field[@name='alarm_ids']" position="replace">
+                   
+                </xpath>
+               
+                <!-- Alterando o rótulo de um campo existente -->
+                <xpath expr="//field[@name='supervisor']" position="replace">
+                   
+                </xpath>
+                <xpath expr="//field[@name='operator']" position="replace">
+                   
+                </xpath>
+                <xpath expr="//field[@name='massa_eto_gas']" position="replace">
+                   
+                </xpath>
+                <xpath expr="//field[@name='concentracao_eto']" position="replace">
+                   
+                </xpath>
+                <xpath expr="//field[@name='massa_eto']" position="replace">
+                   
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
