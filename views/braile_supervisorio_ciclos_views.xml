@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the existing form view -->
+        <record id="view_ciclos_form_inherit" model="ir.ui.view">
+            <field name="name">ciclos.form.inherit</field>
+            <field name="model">steril.supervisorio.ciclos</field>
+            <field name="inherit_id" ref="steril_supervisorio.ciclos.form"/>
+            <field name="arch" type="xml">
+                <!-- Adicionando um campo ao topo do formulário -->
+                <xpath expr="//form/sheet" position="inside">
+                    <group>
+                        <field name="novo_campo"/>
+                    </group>
+                </xpath>
+
+                <!-- Alterando o rótulo de um campo existente -->
+                <xpath expr="//field[@name='campo_existente']" position="attributes">
+                    <attribute name="string">Novo Rótulo</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

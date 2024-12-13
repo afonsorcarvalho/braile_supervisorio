@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_braile_ciclos_template">
+
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+            <style>
+                .legenda {
+                    font-size: 9px;
+                }
+                .titulo_grafico {
+                    margin:0px;
+                }
+                .page-break {
+                    page-break-before: always; /* Força a quebra de página antes do elemento */
+                    page-break-after: always;  /* Força a quebra de página após o elemento */
+                }
+                .data_grid {
+                    
+                }
+
+            </style>
+                
+                    <div class="page">
+
+                        <h2 class="text-center">CYCLE REPORT</h2>
+                        <h3 class="text-center"><span t-field="o.codigo_ciclo" /></h3>
+                        <h3>Load Code: <span t-field="o.name" /></h3>
+                        <div class="row">
+                            <div class="col-2">
+                                <strong>Equipment: </strong>
+                            </div>
+                            <div class="col-6">
+                                <span t-field="o.equipment" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <strong>Start Date: </strong>
+                            </div>
+                            <div class="col-4">
+                                <span t-field="o.data_inicio" />
+                            </div>
+                            <div class="col-2">
+                                <strong>End Date: </strong>
+                            </div>
+                            <div class="col-4">
+                                <span t-field="o.data_fim" />
+                            </div>
+                            
+
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-2">
+                                <strong>Total Time (HH:mm): </strong>
+                            </div>
+                            <div class="col-4">
+                                <span t-field="o.duration"  t-options='{"widget": "float_time"}'/>
+                            </div>
+                        </div>
+                         
+                        <div class="row">
+                            
+                       </div>
+                                            
+                       
+                        <div class="row">
+                            <div class="col-2">
+                                <strong> Stabilization Time:  </strong>
+                            </div>
+                            <div class="col-4">
+                               <t t-esc="o.report_stabilization_time()" />
+                            </div>
+                            <div class="col-3">
+                                <strong> Time in the range [30 - 34ºC]:  </strong>
+                            </div>
+                            <div class="col-3">
+                                 
+                                <t t-esc="o.report_time_in_the_range()" />
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <strong> First Sensor to Reach:  </strong>
+                            </div>
+                            <div class="col-4">
+                               TC01 - 16:31:13 
+                            </div>
+                            <div class="col-3">
+                                <strong> Last Sensor to Reach:  </strong>
+                            </div>
+                            <div class="col-3">
+                                TC08 - 16:53:32
+                            </div>
+                        </div>
+                       
+                        <div class="row mt-5">
+                            <div class="col-12 text-left">
+                            <p>**Stabilization time** - The time it takes for all sensors to
+                             reach the minimum temperature value required to start counting the sterilization time.
+                           </p>
+                            </div>
+                            <!-- <div class="col-6  text-center" >
+                                ________________________________________<br/>
+                                <span t-field="o.operator" /><br/>
+                                Operador
+                            </div> -->
+                            <!-- <div class="col-12  text-center">
+                                ________________________________________<br/>
+                               
+                                Garantia de qualidade<br/>
+                                Aprovação
+                                
+
+                            </div> -->
+                        </div>
+                         <div class="row mt-3 mb-1">
+                           <div class="col-12 text-center"  >
+                           
+                            <!-- <img class="mr-5" t-attf-src="data:image/svg+xml;charset=utf-8;base64,{{o.grafico_ciclo}}" width="100%"/> -->
+                            <img class="mr-5" t-attf-src="data:image/png;base64,{{o.grafico_ciclo}}" width="100%"/>
+                           </div>
+                        </div>
+                        <div class="row mt-3 mb-1">
+                           <div class="col-12 text-center"  >
+                           
+                            <!-- <img class="mr-5" t-attf-src="data:image/svg+xml;charset=utf-8;base64,{{o.grafico_ciclo}}" width="100%"/> -->
+                            <img class="mr-5" t-attf-src="data:image/png;base64,{{o.grafico_ciclo_distribuition}}" width="100%"/>
+                           </div>
+                        </div>
+                        <div class="page-break"></div>
+                        <!-- <table class="table table-bordered table-striped data_grid">
+                            <thead>
+                            <tr>
+                            <th colspan="9"> <t t-esc="o.name"></t> Temperature Table</th>
+                            </tr>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>TC01</th>
+                                    <th>TC02</th>
+                                    <th>TC03</th>
+                                    <th>TC04</th>
+                                    <th>TC05</th>
+                                    <th>TC06</th>
+                                    <th>TC07</th>
+                                    <th>TC08</th>
+                                 
+                                </tr>
+                            </thead>
+                          
+                          
+                          <t t-set="data_grid" t-value="o.report_mount_grid_data()" />
+
+                          
+                          
+                            
+                            <tbody>
+                            
+                            <t t-foreach="data_grid" t-as="values">
+                                
+                                <tr>
+                                    <td> 
+                                        <t t-esc="values['Time']" />
+                                    </td>
+                                    <td> 
+                                        <t t-esc="values['TC01']" />
+                                    </td>
+                                    <td> 
+                                        <t t-esc="values['TC02']" />
+                                    </td>
+                                    <td> 
+                                        <t t-esc="values['TC03']" />
+                                    </td>
+                                    <td> 
+                                        <t t-esc="values['TC04']" />
+                                    </td>
+                                    <td> 
+                                        <t t-esc="values['TC05']" />
+                                    </td>
+                                    <td> 
+                                        <t t-esc="values['TC06']" />
+                                    </td>
+                                    <td> 
+                                        <t t-esc="values['TC07']" />
+                                    </td>
+                                    <td> 
+                                        <t t-esc="values['TC08']" />
+                                    </td>
+                                </tr>
+                            </t>
+                            
+                            </tbody>
+                        </table> -->
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
