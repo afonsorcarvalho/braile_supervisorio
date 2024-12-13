@@ -170,7 +170,8 @@ class SupervisorioCiclosBraile(models.Model):
 
         # Dicionário para verificar se o canal já atingiu a temperatura alvo
         canais_atingidos = {i: False for i in range(8)}
-
+        if not dados:
+            return 0
         # Percorrer os dados para cada linha (hora e 8 canais de temperatura)
         for hora, *temperaturas in dados:
             # Verificar quando cada canal atingir a temperatura alvo pela primeira vez
