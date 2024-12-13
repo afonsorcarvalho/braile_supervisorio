@@ -9,18 +9,26 @@
             <field name="arch" type="xml">
            
                
-                <xpath expr="//group[@string='Dados Incubação Indicador Biológico']" position="replace">
+                <xpath expr="//form/sheet/group[2]" position="replace">
+                   
+                </xpath>
+                <xpath expr="//form/sheet/group[2]" position="replace">
+                   
+                </xpath>
+            
+                <xpath expr="//form/sheet/group[3]" position="replace">
+                   
+                </xpath>
+                <!-- <xpath expr="//group[@string='Dados Incubação Indicador Biológico']" position="replace">
                    
                 </xpath>
                 <xpath expr="//group[@string='Dados do Ciclo']" position="replace">
                    
-                </xpath>
-                <xpath expr="//field[@name='fases']" position="replace">
+                </xpath> -->
+                 <xpath expr="//field[@name='fases']" position="replace">
                    
                 </xpath>
-                <xpath expr="//group[@string='Alarmes']" position="replace">
-                   
-                </xpath>
+               
                 <xpath expr="//field[@name='alarm_ids']" position="replace">
                    
                 </xpath>
