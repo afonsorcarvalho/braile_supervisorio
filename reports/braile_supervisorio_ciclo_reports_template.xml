@@ -133,7 +133,7 @@
                             </div> -->
                         </div>
                         <div class="page-break"></div>
-                        <!-- <table class="table table-bordered table-striped data_grid">
+                        <table class="table table-bordered table-striped data_grid">
                             <thead>
                             <tr>
                             <th colspan="9"> <t t-esc="o.name"></t> Temperature Table</th>
@@ -194,7 +194,7 @@
                             </t>
                             
                             </tbody>
-                        </table> -->
+                        </table>
                     </div>
                 </t>
             </t>
