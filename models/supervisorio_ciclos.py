@@ -193,7 +193,10 @@ class SupervisorioCiclosBraile(models.Model):
         #lendo arquivo com os dados do ciclo
         _logger.debug(f"Entrando na add_data_file_to_record da braile")
         data_cycle = self.get_data_sanitized()
+
         print(data_cycle)
+        if not data_cycle:
+            return None
         self.report_stabilization_time()
         
         # pegando as configuraç~eos de fase
