@@ -332,18 +332,21 @@ class SupervisorioCiclosBraile(models.Model):
        
         self.write({'message_main_attachment_id' : attachment.id } )         
         return attachment
-
+ 
 
     def mount_fig_chart_matplot(self):
        
         
         data = self.get_data_sanitized()
+        if not data:
+            return None
         range_max = 34
         range_min = 30
         _logger.debug(data)
 
         colocacao_sensores = self.calcular_colocacoes_por_canal(data, range_min)
         _logger.debug(colocacao_sensores)
+        
 
         # Extraindo os tempos (eixo X) e as temperaturas de cada canal (eixo Y)
         times = [str(entry[0]) for entry in data]
