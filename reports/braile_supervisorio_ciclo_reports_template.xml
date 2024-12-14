@@ -83,17 +83,30 @@
                             </div>
                         </div>
                         <div class="row">
+                        
+                       
+                        
+                        
+                          
+                      <t t-set="sensor_rank" t-value="o.report_sensor_rank()" />
                             <div class="col-2">
                                 <strong> First Sensor to Reach:  </strong>
                             </div>
                             <div class="col-4">
-                               TC01 - 16:31:13 
+                            
+                              <t t-esc="sensor_rank[0]" />
+                              
                             </div>
                             <div class="col-3">
                                 <strong> Last Sensor to Reach:  </strong>
                             </div>
                             <div class="col-3">
-                                TC08 - 16:53:32
+                            
+                             
+                             <t t-esc="sensor_rank[1]" />
+                             
+                            
+                                
                             </div>
                         </div>
                        

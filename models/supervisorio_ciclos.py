@@ -109,6 +109,22 @@ class SupervisorioCiclosBraile(models.Model):
         # Calcular o tempo total em que todas as temperaturas ficaram entre 30 e 34 graus
         hora,min,sec,total_seconds = self.calculate_time_in_range(times, temperatures, range_min, range_max)
         return f"{hora}h, {min}m, {sec}s"
+    def report_sensor_rank(self):
+        data = self.get_data_sanitized()
+        if not data:
+            return None
+      
+        range_min = self.range_min
+      
+        colocacao_sensores = self.calcular_colocacoes_por_canal(data, range_min)
+        print("###################################################")
+        print(colocacao_sensores)
+        if len(colocacao_sensores)< 1:
+            return [(None,None,None)]
+        first_sensor = colocacao_sensores[0]
+        last_sensor = colocacao_sensores[-1]
+        print ([f"TC{first_sensor[0]:02d} - {first_sensor[1]}",f"TC{last_sensor[0]:02d} - {last_sensor[1]}"])
+        return [f"TC{first_sensor[0]:02d} - {first_sensor[1]}",f"TC{last_sensor[0]:02d} - {last_sensor[1]}"]
     
     def report_stabilization_time(self):
         data_cycle = self.get_data_sanitized()
@@ -193,7 +209,7 @@ class SupervisorioCiclosBraile(models.Model):
         #lendo arquivo com os dados do ciclo
         _logger.debug(f"Entrando na add_data_file_to_record da braile")
         data_cycle = self.get_data_sanitized()
-
+        self.report_sensor_rank()
         print(data_cycle)
         if not data_cycle:
             return None
@@ -343,8 +359,8 @@ class SupervisorioCiclosBraile(models.Model):
         data = self.get_data_sanitized()
         if not data:
             return None
-        range_max = 34
-        range_min = 30
+        range_max = self.range_max
+        range_min = self.range_min
         _logger.debug(data)
 
         colocacao_sensores = self.calcular_colocacoes_por_canal(data, range_min)
